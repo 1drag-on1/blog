@@ -15,6 +15,14 @@ public class SysUser {
 
     private String name;
 
+    private String username;
+
+    private String password;
+
+    private String salt;
+
+    private String role;
+
     private String headName;
 
     private String email;
@@ -25,10 +33,14 @@ public class SysUser {
 
     private String introduction;
 
-    private Integer deleted;
-
     private Date createTime;
 
+    private String createBy;
+
     private Date updateTime;
+
+    private String updateBy;
+
+    private Integer deleted;
 
 }

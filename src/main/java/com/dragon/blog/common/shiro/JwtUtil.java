@@ -7,7 +7,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.dragon.blog.common.Result;
-import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletRequest;
@@ -22,6 +22,7 @@ import java.util.Date;
  * @Description
  */
 @Component
+@Slf4j
 public class JwtUtil {
 
     /**
@@ -45,7 +46,7 @@ public class JwtUtil {
                     .build();
             //效验TOKEN
             DecodedJWT jwt = verifier.verify(token);
-            System.out.println("登录认证成功!");
+            log.info("登录认证成功！");
             return true;
         } catch (Exception exception) {
             System.out.println("JwtUtil登录认证失败!");
@@ -99,7 +100,6 @@ public class JwtUtil {
     public static boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 
         HttpServletResponse res = (HttpServletResponse) response;
-        HttpServletRequest req = (HttpServletRequest) request;
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setStatus(HttpServletResponse.SC_OK);
         res.setCharacterEncoding("UTF-8");

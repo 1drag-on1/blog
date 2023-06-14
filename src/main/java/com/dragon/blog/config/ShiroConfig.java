@@ -76,6 +76,7 @@ public class ShiroConfig {
 
         HashMap<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/login", "anon");
+        filterMap.put("/sys/register", "anon");
         filterMap.put("/**", "jwt");
         bean.setFilterChainDefinitionMap(filterMap);
         return bean;

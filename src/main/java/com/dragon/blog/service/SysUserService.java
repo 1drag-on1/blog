@@ -8,4 +8,9 @@ import com.dragon.blog.pojo.SysUser;
  * @Date 2023/4/4 10:24
  */
 public interface SysUserService extends IService<SysUser> {
+
+    Boolean register(SysUser user);
+
+    void authentication(String token);
+
 }

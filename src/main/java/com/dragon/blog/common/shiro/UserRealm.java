@@ -32,31 +32,29 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-//        System.out.println("-------------shiro授权开始--------------");
-//        String account = JwtUtil.getUsername(principalCollection.toString());
-//        //身份授权
-//        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//        SysUser user = sysUserService.getOne(new LambdaQueryWrapper<SysUser>().select(SysUser::getRole).eq(SysUser::getAccount, account));
-//        if ("admin".equals(user.getRole())) {
-//            info.addRole(user.getRole());
-//        }
-//        info.addRole("user");
-////        SysRole role = sysRoleMapper.selectOne(new LambdaQueryWrapper<SysRole>().eq(SysRole::getUserId, user.getId()));
-////        info.addStringPermission(role.getPermissions());
-//        return info;
-        return null;
+        System.out.println("-------------shiro授权开始--------------");
+        String username = JwtUtil.getUsername(principalCollection.toString());
+        //身份授权
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        SysUser user = sysUserService.getOne(new LambdaQueryWrapper<SysUser>().select(SysUser::getRole).eq(SysUser::getUsername, username));
+        if ("admin".equals(user.getRole())) {
+            info.addRole(user.getRole());
+        }
+        info.addRole("user");
+//        SysRole role = sysRoleMapper.selectOne(new LambdaQueryWrapper<SysRole>().eq(SysRole::getUserId, user.getId()));
+//        info.addStringPermission(role.getPermissions());
+        return info;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-//        System.out.println("-------------shiro认证开始--------------");
-////        String token = (String) authenticationToken.getCredentials();
-////        if (token == null) {
-////            throw new AuthenticationException("token为空!");
-////        }
-//        String token = (String) authenticationToken.getPrincipal();
-//        sysUserService.authentication(token);
-//        return new SimpleAuthenticationInfo(token, token, getName());
-        return null;
+        System.out.println("-------------shiro认证开始--------------");
+//        String token = (String) authenticationToken.getCredentials();
+//        if (token == null) {
+//            throw new AuthenticationException("token为空!");
+//        }
+        String token = (String) authenticationToken.getPrincipal();
+        sysUserService.authentication(token);
+        return new SimpleAuthenticationInfo(token, token, getName());
     }
 }
