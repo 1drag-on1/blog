@@ -32,7 +32,6 @@ public class LoginController {
     public LoginController(SysUserService sysUserService) {
         this.sysUserService = sysUserService;
     }
-
     @PostMapping("/login")
     public Result<HashMap<String, Object>> login(@RequestBody SysUser sysUser, HttpServletResponse response){
         Result<HashMap<String, Object>> result = new Result<>();
