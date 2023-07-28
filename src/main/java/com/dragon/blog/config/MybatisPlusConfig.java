@@ -33,10 +33,10 @@ public class MybatisPlusConfig {
     }
 
 //    @Bean
-//    @Profile({"dev"}) //设置 dev 环境开启，保证我们的效率
+//    @Profile({"dev"}) //设置 dev 环境开启，保证我们的效率 3.1.0版本左右才有
 //    public PerformanceInterceptor performanceInterceptor() {
 //        PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
-//        performanceInterceptor.setMaxTime(2000);//1000毫秒 设置sql执行的最大时间，如果超过了则不执行
+//        performanceInterceptor.setMaxTime(500);//1000毫秒 设置sql执行的最大时间，如果超过了则不执行
 //        performanceInterceptor.setFormat(true);//是否格式化代码
 //        return performanceInterceptor;
 //    }
