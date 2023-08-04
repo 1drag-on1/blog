@@ -18,7 +18,6 @@ public class Visitor {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
-    @TableId(type = IdType.ASSIGN_UUID)
     private String uuid;
     private String ip;
     private String ipSource;

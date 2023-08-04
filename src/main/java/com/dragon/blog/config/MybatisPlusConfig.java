@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @Description
  */
 @Configuration
-@MapperScan("com.dragon.blog.mapper")
+//@MapperScan("com.dragon.blog.mapper")
 public class MybatisPlusConfig {
 
     /**
