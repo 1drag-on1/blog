@@ -11,33 +11,39 @@ import java.util.Date;
 
 /**
  * @author Dragon
- * @Date 2023/4/4 10:17
+ * @Date 2023/8/4 11:15
+ * @Description
  */
 @Data
-public class SysUser {
+public class Article {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String name;
-    private String username;
+    private String title;
+    private String context;
+    private String likes;
+    private Boolean state;
+    private Boolean recommend;
+    private Boolean appreciation;
+    private Boolean commentEnabled;
+    private Boolean top;
+    private Integer views;
+    private Integer words;
+    private Integer readTime;
     private String password;
-    private String salt;
-    private String role;
-    private String headName;
-    private String email;
-    private String wechat;
-    private String qq;
-    private String introduction;
+    private String userId;
+    private String category;
+    private String description;
+    private String firstPicture;
 
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
-    private String createBy;
+    private Integer createBy;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
-    private String updateBy;
     @TableLogic
-    private Integer deleted;
+    private String deleted;
 
 }
