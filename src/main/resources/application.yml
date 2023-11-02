@@ -4,11 +4,13 @@ server:
 spring:
   application:
     name: m-blog
-#  threadpool:
-#    core-pool-size: 10
-#    max-pool-size: 20
-#    queue-capacity: 1000
-#    keep-alive-seconds: 600
+  servlet:
+    multipart:
+      #文件上传大小限制
+      max-file-size: 100000
+      max-request-size: 100000
+  mvc:
+    throw-exception-if-no-handler-found: true
 
 #  rabbitmq:
 #    host: 47.120.15.196

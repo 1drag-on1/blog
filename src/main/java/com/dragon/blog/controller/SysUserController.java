@@ -3,14 +3,11 @@ package com.dragon.blog.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dragon.blog.common.Result;
-import com.dragon.blog.common.shiro.JwtUtil;
 import com.dragon.blog.pojo.SysUser;
 import com.dragon.blog.service.SysUserService;
-import org.apache.commons.lang3.StringUtils;
+import com.dragon.blog.util.PasswordUtil;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +39,8 @@ public class SysUserController {
         if (!b) {
             throw new RuntimeException("注册失败");
         }
-        result.success("添加成功！");
+        result.setData(user);
+        result.setMessage("添加成功！");
         return result;
     }
 
@@ -94,10 +92,14 @@ public class SysUserController {
      */
     @PostMapping("/editUser")
     public Result<SysUser> editUser(@RequestBody SysUser user) {
+        SysUser sysUser = sysUserService.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, user.getUsername()));
+        if (!sysUser.getPassword().equals(user.getPassword())){
+            user.setPassword(PasswordUtil.encrypt(sysUser.getUsername(), user.getPassword(), sysUser.getSalt()));
+        }
         Result<SysUser> result = new Result<>();
         boolean b = sysUserService.updateById(user);
         if (!b) {
-            return result.error500("修改失败");
+            throw new RuntimeException("修改失败");
         }
         return result.ok();
     }

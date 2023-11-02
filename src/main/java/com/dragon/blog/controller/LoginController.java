@@ -7,6 +7,7 @@ import com.dragon.blog.common.shiro.JwtUtil;
 import com.dragon.blog.pojo.SysUser;
 import com.dragon.blog.service.SysUserService;
 import com.dragon.blog.util.PasswordUtil;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.ShiroException;
@@ -25,6 +26,7 @@ import java.util.HashMap;
  */
 @RestController
 @Slf4j
+@Api(tags = "登录接口")
 public class LoginController {
 
     private final SysUserService sysUserService;
@@ -32,7 +34,6 @@ public class LoginController {
     public LoginController(SysUserService sysUserService) {
         this.sysUserService = sysUserService;
     }
-
     @PostMapping("/login")
     public Result<HashMap<String, Object>> login(@RequestBody SysUser sysUser, HttpServletResponse response){
         Result<HashMap<String, Object>> result = new Result<>();
