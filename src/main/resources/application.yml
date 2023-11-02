@@ -4,23 +4,28 @@ server:
 spring:
   application:
     name: m-blog
+#  threadpool:
+#    core-pool-size: 10
+#    max-pool-size: 20
+#    queue-capacity: 1000
+#    keep-alive-seconds: 600
 
-  rabbitmq:
-    host: 47.120.15.196
-    port: 5672
-    username: admin
-    password: 123
-    virtual-host: /  //虚拟机
-    listener:
-      direct:
-        prefetch: 1 #每次获取一条消息（消费预取限制）
+#  rabbitmq:
+#    host: 47.120.15.196
+#    port: 5672
+#    username: admin
+#    password: 123
+#    virtual-host: /  //虚拟机
+#    listener:
+#      direct:
+#        prefetch: 1 #每次获取一条消息（消费预取限制）
 
   datasource:
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=GMT%2B8&characterEncoding=UTF-8&allowMultiQueries=true
     username: root
-    password: 123
-    type: com.alibaba.druid.pool.DruidDataSource
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
     druid:
       #   Druid数据源配置
       # 初始连接数
@@ -56,7 +61,7 @@ spring:
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500;
 
   redis:
-    host: 47.120.15.196
+    host: localhost
     jedis:
       pool:
         max-active: 8
@@ -66,6 +71,7 @@ spring:
     password:
     port: 6379
     timeout: 5000
+    database: 0
 
   main:
     allow-bean-definition-overriding: true     #当出现相同名字的类进行注册时，准许覆盖注册
@@ -86,11 +92,3 @@ mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   check-config-location: true                         # 检查xml文件是否存在
   type-aliases-package: com.dragon.pojo.*    # 实体类存放位置
-
-
-
-#threadpool:
-#  core-pool-size: 10
-#  max-pool-size: 20
-#  queue-capacity: 1000
-#  keep-alive-seconds: 600
